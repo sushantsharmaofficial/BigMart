@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState, useEffect } from "react";
+import Header from "./components/header";
+import FeatureProductSection from "./sections/featureproductsection";
+import Herosection from "./sections/herosection";
+import Footer from "./components/footer";
+import { Outlet, useLocation } from "react-router-dom";
 function App() {
+  const [products, setProducts] = useState([]);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((json) => setProducts(json));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Outlet />
+      {location.pathname === "/" && (
+        <>
+          <Herosection />
+          <FeatureProductSection
+            itemsCount={5}
+            title="Featured Products"
+            products={products}
+          />
+          <FeatureProductSection
+            itemsCount={5}
+            title="Recently Added Products"
+            products={products}
+          />
+        </>
+      )}
+      <Footer />
+    </>
   );
 }
 
