@@ -7,7 +7,7 @@ import { removeCart } from "../services/cartslice";
 const CartPage = () => {
   const dispatch = useDispatch();
   let cartData = useSelector((state) => state.cart.cartItemsData);
-  console.log(cartData);
+
   return (
     <div className="p-10 ">
       <h3 className=" font-bold text-3xl mb-5 text-orange-400 py-10">
@@ -18,24 +18,24 @@ const CartPage = () => {
           {cartData.length !== 0 ? (
             cartData.map((item) => (
               <div
-                key={item.id}
-                className="flex justify-between gap-5 mb-5 relative"
+                key={item?.id}
+                className="flex justify-between gap-5 mb-5 relative "
               >
-                <div className="image flex-1  bg-orange-50 ">
+                <div className="image flex-1  bg-orange-50  ">
                   <img
-                    src={item.image}
+                    src={item?.image}
                     alt="image"
-                    className="rounded-3xl h-48 w-full object-contain "
+                    className="rounded-3xl items-center h-60 w-full object-contain "
                   />
                 </div>
                 <div className="info flex-[3]  gap-10 px-3  bg-orange-50 rounded-3xl">
                   <div className="whole flex">
                     <div className="infosys ">
                       <h3 className="title flex text-orange-400 font-bold text-3xl mb-3 mt-10">
-                        <p>{item.title}</p>
+                        <p>{item?.title}</p>
                       </h3>
                       <p className="price flex  items-center gap-1 py-1  text-2xl font-bold text-orange-300 mb-3  rounded-2xl ">
-                        <BsCurrencyDollar /> {item.price}
+                        <BsCurrencyDollar /> {item?.price}
                       </p>
                       <form className="flex mb-2 rounded-lg p-1">
                         <button className=" px-2 text-xl font-bold ">-</button>
@@ -43,7 +43,7 @@ const CartPage = () => {
                         <button className="px-2 text-xl font-bold ">+</button>
                       </form>
                       <div className="  flex font-semibold text-xl text-orange-500 py-3 px-2">
-                        {item.category}
+                        {item?.category}
                       </div>
                     </div>
                     <button

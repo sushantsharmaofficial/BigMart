@@ -9,7 +9,9 @@ const FeatureProductSection = ({ title, products, itemsCount }) => {
       <div className="heading flex justify-between mb-10">
         <h3 className="text font-bold text-orange-400 text-3xl">{title}</h3>
         <div className="flex items-center gap-4 text-xl">
-          <button className=" font-semibold">All Products</button>
+          <Link to="/products">
+            <button className=" font-semibold">All Products</button>
+          </Link>
           <BsFillArrowRightCircleFill className=" text-orange-400" />
         </div>
       </div>
